@@ -178,7 +178,7 @@ module Chatops
     end
 
     def chatops_test_auth?
-      Rails.env.test? && request.env["CHATOPS_TESTING_AUTH"]
+      request.env["CHATOPS_TESTING_AUTH"]
     end
 
     def should_authenticate_chatops?
