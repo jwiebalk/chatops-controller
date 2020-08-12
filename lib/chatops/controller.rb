@@ -10,7 +10,7 @@ module Chatops
       before_action :ensure_valid_chatops_timestamp, if: :should_authenticate_chatops?
       before_action :ensure_valid_chatops_signature, if: :should_authenticate_chatops?
       before_action :ensure_valid_chatops_nonce,     if: :should_authenticate_chatops?
-      before_action :ensure_chatops_authenticated,   if: :should_authenticate_chatops?
+      before_action :ensure_chatops_authenticated
       before_action :ensure_user_given
       before_action :ensure_method_exists
     end
