@@ -119,16 +119,6 @@ module Chatops
 
     def ensure_chatops_authenticated
       return true
-      body = request.raw_post || ""
-      signature_string = [@chatops_url, @chatops_nonce, @chatops_timestamp, body].join("\n")
-      # We return this just to aid client debugging.
-      response.headers["Chatops-Signature-String"] = Base64.strict_encode64(signature_string)
-      raise ConfigurationError.new("You need to add a client's public key in .pem format via #{Chatops.public_key_env_var_name}") unless Chatops.public_key.present?
-      if signature_valid?(Chatops.public_key, @chatops_signature, signature_string) ||
-          signature_valid?(Chatops.alt_public_key, @chatops_signature, signature_string)
-          return true
-      end
-      return jsonrpc_error(-32800, 403, "Not authorized")
     end
 
     def ensure_valid_chatops_url
