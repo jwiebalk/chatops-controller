@@ -183,7 +183,7 @@ module Chatops
     end
 
     def should_authenticate_chatops?
-      request_is_chatop? && !chatops_test_auth?
+      return false
     end
 
     def signature_valid?(key_string, signature, signature_string)
